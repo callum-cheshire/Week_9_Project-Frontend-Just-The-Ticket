@@ -42,7 +42,7 @@ function App() {
   const [errorLog, setErrorLog] = useState("")
 
   useEffect(() => {
-    fetch('https://apimocha.com/justtheticket/tickets', {
+    fetch('http://localhost:8000/api/tickets', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(ticketList)

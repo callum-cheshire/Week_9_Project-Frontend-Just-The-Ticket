@@ -1,6 +1,6 @@
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // Inputs
   // Question Author
   // Room Number
@@ -40,6 +40,16 @@ function App() {
   const [description, setDescription] = useState("")
   const [code, setCode] = useState("")
   const [errorLog, setErrorLog] = useState("")
+
+  useEffect(() => {
+    fetch('https://apimocha.com/justtheticket/tickets', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(ticketList)
+    }).then(() => {
+      console.log('new ticket added');
+    })
+  }, [ticketList])
 
   const jsCatOnChange = () => {
     setJsChecked(!jsChecked);

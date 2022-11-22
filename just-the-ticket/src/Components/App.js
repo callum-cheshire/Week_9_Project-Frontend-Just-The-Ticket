@@ -34,12 +34,16 @@ function App() {
   const [ticketList, setTicketList] = useState(mockTicket)
   const [name, setName] = useState("")
   const [question, setQuestion] = useState("")
-  const [catJavascript, setCatJavascript] = useState(false)
+  const [jsChecked, setJsChecked] = useState(false)
   const [roomNumber, setRoomNumber] = useState(0)
   const [problem, setProblem] = useState("")
   const [description, setDescription] = useState("")
   const [code, setCode] = useState("")
   const [errorLog, setErrorLog] = useState("")
+
+  const jsCatOnChange = () => {
+    setJsChecked(!jsChecked);
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -47,6 +51,7 @@ function App() {
       id: uuidv4(),
       name: name,
       question: question,
+      categories: jsChecked ? "JavaScipt" : "",
       roomNumber: roomNumber,
       problem: problem,
       description: description,
@@ -89,7 +94,8 @@ function App() {
               className="input" 
               type="checkbox" 
               name="javascript" 
-              
+              checked={jsChecked}
+              onChange={jsCatOnChange}
               />
             </div>
         </div>
@@ -148,6 +154,7 @@ function App() {
             <p>{ticket.name}</p>
             <p>{ticket.roomNumber}</p>
             <p>{ticket.question}</p>
+            <p>{ticket.categories}</p>
             <p>{ticket.problem}</p>
             <p>{ticket.description}</p>
             <p>{ticket.code}</p>

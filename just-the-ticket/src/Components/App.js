@@ -25,13 +25,14 @@ const { Panel } = Collapse;
 const mockTicket =
   [{
     id: 1,
-    name: "Adie",
-    question: "How do i use react",
-    roomNumber: 1,
-    problem: "I don't know how to use react",
+    question_author: "Adie",
+    question_title: "How do i use react",
+    room_number: 1,
+    problem_summary: "I don't know how to use react",
+    tried_input: "xyz",
     description: "It's hard",
     code: "SETSTATE",
-    errorLog: "ERROR ERROR"
+    error_logs: "ERROR ERROR"
   }]
 
 // GET inital data
@@ -49,7 +50,7 @@ function App() {
   //   let initialTicketList = getInitialData()
   // }, []);
   
-  const [ticketList, setTicketList] = useState(mockTicket)
+  const [ticketList, setTicketList] = useState([])
   const [name, setName] = useState("")
   const [question, setQuestion] = useState("")
   // const [jsChecked, setJsChecked] = useState(false)
@@ -99,6 +100,19 @@ function App() {
     getData();
   }
 
+  function handleAllTickets(event) {
+    event.preventDefault();
+    
+    // GET request
+    async function getData() {
+      let response = await fetch('http://localhost:8000/api/tickets')
+      let data = await response.json();
+      setTicketList(data)
+      console.log(data)
+    }
+    getData();
+  }
+
  /*  function handleChange(e) {
     setName(e.target.value)
   } */
@@ -115,14 +129,15 @@ function App() {
 
       </div>
       <div className="test-container">
+      <button className="submit-button" onClick={handleAllTickets}>See All Tickets</button>
         {ticketList.map((ticket)=> {
-          {/* console.log(ticket) */}
+          /* console.log(ticket) */
           return (
             
             <div key={ticket.id}>
 
-              {/* <Collapse defaultActiveKey={['1']}>
-                <Panel className="panel-header" header="This is panel header 1" key="1"> */}
+              <Collapse defaultActiveKey={['1']}>
+                <Panel className="panel-header" header="This is panel header 1" key="1">
                   <div>
                     <p className="1">{ticket.question_author}</p>
                     <p className="2">{ticket.question_title}</p>
@@ -133,8 +148,8 @@ function App() {
                     <p className="7">{ticket.code}</p>
                     <p className="8">{ticket.error_logs}</p>
                   </div>
-                {/* </Panel>
-              </Collapse> */}
+                </Panel>
+              </Collapse>
             </div>
           )
         } )}

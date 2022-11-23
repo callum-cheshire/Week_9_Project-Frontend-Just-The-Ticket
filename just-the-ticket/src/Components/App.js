@@ -1,6 +1,7 @@
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Collapse } from 'antd';
 // import useCollapse from 'react-collapsed';
 
 // function Collapsible() {
@@ -35,6 +36,8 @@ import { useState, useEffect } from 'react';
   // Create JSON - take input states to create an object>JSON 
   // Associated with a POST request?
   // Pt 2. GET request to display the posts under the form 
+
+const { Panel } = Collapse;
 
 const mockTicket =
   [{
@@ -198,14 +201,32 @@ function App() {
         {ticketList.map((ticket)=> {
           return (
             <div key={ticket.id}>
-              <p>{ticket.name}</p>
-              <p>{ticket.roomNumber}</p>
-              <p>{ticket.question}</p>
-              <p>{ticket.categories}</p>
-              <p>{ticket.problem}</p>
-              <p>{ticket.description}</p>
-              <p>{ticket.code}</p>
-              <p>{ticket.errorLog}</p>
+              <Collapse defaultActiveKey={['1']}>
+                <Panel className="panel-header" header="This is panel header 1" key="1">
+                  <div>
+                    <p>{ticket.name}</p>
+                    <p>{ticket.roomNumber}</p>
+                    <p>{ticket.question}</p>
+                    <p>{ticket.categories}</p>
+                    <p>{ticket.problem}</p>
+                    <p>{ticket.description}</p>
+                    <p>{ticket.code}</p>
+                    <p>{ticket.errorLog}</p>
+                  </div>
+                </Panel>
+                <Panel className="panel-header" header="This is panel header 2" key="2">
+                  <div>
+                    <p>{ticket.name}</p>
+                    <p>{ticket.roomNumber}</p>
+                    <p>{ticket.question}</p>
+                    <p>{ticket.categories}</p>
+                    <p>{ticket.problem}</p>
+                    <p>{ticket.description}</p>
+                    <p>{ticket.code}</p>
+                    <p>{ticket.errorLog}</p>
+                  </div>
+                </Panel>
+              </Collapse>
             </div>
           )
         } )}

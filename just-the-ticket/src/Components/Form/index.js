@@ -1,4 +1,9 @@
-const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, setCode, setErrorLog, handleSubmit}) => {
+// setName, setQuestion, setRoomNumber, setProblem, setDescription, setCode, setErrorLog, handleSubmit
+
+const Form = ({setTicket, userTicket, handleSubmit}) => {
+  const handleChange = (event) => {
+    setTicket({ ...userTicket, [event.target.name]: event.target.value })
+}
   return ( 
     
     <form className="form-container" >
@@ -11,7 +16,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
                 autoComplete="off" 
                 placeholder="Your name or username..."
                 name="name" 
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleChange}
                 />
             </div>
             <div className="room-input-container">
@@ -23,7 +28,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
                 min="0" 
                 autoComplete="off"
                 name="room-number" 
-                onChange={(e) => setRoomNumber(e.target.value)}
+                onChange={handleChange}
                 />
             </div>
           </div>
@@ -35,7 +40,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
               placeholder="Enter a short title for your question..." 
               autoComplete="off" 
               name="question" 
-              onChange={(e) => setQuestion(e.target.value)}
+              onChange={handleChange}
               />
           </div>
           {/* <div className="input-container">
@@ -59,7 +64,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
               autoComplete="off"
               placeholder="Break down the problem as you understand it so far..."  
               name="problem" 
-              onChange={(e) => setProblem(e.target.value)}
+              onChange={handleChange}
               />
           </div>
           <div className="input-container">
@@ -70,7 +75,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
               autoComplete="off" 
               placeholder="Describe the things have you already tried..."  
               name="description" 
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={handleChange}
               />
           </div>
           <div className="input-container">
@@ -81,7 +86,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
               autoComplete="off" 
               placeholder="Paste some of your code to help provide context..." 
               name="code" 
-              onChange={(e) => setCode(e.target.value)}
+              onChange={handleChange}
               />
           </div>
           <div className="input-container">
@@ -92,7 +97,7 @@ const Form = ({setName, setQuestion, setRoomNumber, setProblem, setDescription, 
               autoComplete="off"
               placeholder="Paste any error logs you have recieved here..."  
               name="error-logs" 
-              onChange={(e) => setErrorLog(e.target.value)}
+              onChange={handleChange}
               />
           </div>
           

@@ -1,6 +1,6 @@
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Collapse } from 'antd';
 import Form from '../Components/Form'
 
@@ -34,18 +34,22 @@ const mockTicket =
     errorLog: "ERROR ERROR"
   }]
 
+// GET inital data
+
+
 
 function App() {
-
-  // GET request
-  async function getInitialData() {
-    let response = await fetch('http://localhost:8000/api/tickets')
-    let data = await response.json();
-    return data
-  }
-  let initialTicketList = getInitialData();
+  // useEffect(() => {
+  //   async function getInitialData() {
+  //     let response = await fetch('http://localhost:8000/api/tickets')
+  //     let data = await response.json();
+  //     console.log("in function ->", data);
+  //     return data
+  //   }
+  //   let initialTicketList = getInitialData()
+  // }, []);
   
-  const [ticketList, setTicketList] = useState(initialTicketList)
+  const [ticketList, setTicketList] = useState(mockTicket)
   const [name, setName] = useState("")
   const [question, setQuestion] = useState("")
   // const [jsChecked, setJsChecked] = useState(false)
@@ -85,12 +89,12 @@ function App() {
       }
       postData();
     /* setTicketList([...ticketList, ticket]) */
-
     // GET request
     async function getData() {
       let response = await fetch('http://localhost:8000/api/tickets')
       let data = await response.json();
       setTicketList(data)
+      console.log(data)
     }
     getData();
   }
@@ -112,34 +116,25 @@ function App() {
       </div>
       <div className="test-container">
         {ticketList.map((ticket)=> {
+          {/* console.log(ticket) */}
           return (
+            
             <div key={ticket.id}>
-              <Collapse defaultActiveKey={['1']}>
-                <Panel className="panel-header" header="This is panel header 1" key="1">
+
+              {/* <Collapse defaultActiveKey={['1']}>
+                <Panel className="panel-header" header="This is panel header 1" key="1"> */}
                   <div>
-                    <p>{ticket.name}</p>
-                    <p>{ticket.roomNumber}</p>
-                    <p>{ticket.question}</p>
-                    <p>{ticket.categories}</p>
-                    <p>{ticket.problem}</p>
-                    <p>{ticket.description}</p>
-                    <p>{ticket.code}</p>
-                    <p>{ticket.errorLog}</p>
+                    <p className="1">{ticket.question_author}</p>
+                    <p className="2">{ticket.question_title}</p>
+                    <p className="3">{ticket.room_number}</p>
+                    <p className="4">{ticket.problem_summary}</p>
+                    <p className="5">{ticket.tried_input}</p>
+                    <p className="6">{ticket.description}</p>
+                    <p className="7">{ticket.code}</p>
+                    <p className="8">{ticket.error_logs}</p>
                   </div>
-                </Panel>
-                <Panel className="panel-header" header="This is panel header 2" key="2">
-                  <div>
-                    <p>{ticket.name}</p>
-                    <p>{ticket.roomNumber}</p>
-                    <p>{ticket.question}</p>
-                    <p>{ticket.categories}</p>
-                    <p>{ticket.problem}</p>
-                    <p>{ticket.description}</p>
-                    <p>{ticket.code}</p>
-                    <p>{ticket.errorLog}</p>
-                  </div>
-                </Panel>
-              </Collapse>
+                {/* </Panel>
+              </Collapse> */}
             </div>
           )
         } )}

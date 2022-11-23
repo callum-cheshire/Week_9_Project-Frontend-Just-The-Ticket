@@ -3,68 +3,33 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import { Collapse } from 'antd';
 import Form from '../Components/Form'
-
-// Inputs
-  // Question Author
-  // Room Number
-  // Question title 
-  // Categories
-    // Checkboxes
-  // Problem Summary
-  // What you have tried 
-  // Code 
-  // Error logs
-    // Non required?
-// Submit button
-  // Create JSON - take input states to create an object>JSON 
-  // Associated with a POST request?
-  // Pt 2. GET request to display the posts under the form 
-
 const { Panel } = Collapse;
 
-const mockTicket =
-  [{
-    id: 1,
-    question_author: "Adie",
-    question_title: "How do i use react",
-    room_number: 1,
-    problem_summary: "I don't know how to use react",
-    tried_input: "xyz",
-    description: "It's hard",
-    code: "SETSTATE",
-    error_logs: "ERROR ERROR"
-  }]
-
-// GET inital data
-
-
-
 function App() {
-  // useEffect(() => {
-  //   async function getInitialData() {
-  //     let response = await fetch('http://localhost:8000/api/tickets')
-  //     let data = await response.json();
-  //     console.log("in function ->", data);
-  //     return data
-  //   }
-  //   let initialTicketList = getInitialData()
-  // }, []);
+  useEffect(() => {
+    async function getInitialData() {
+      let response = await fetch('http://localhost:8000/api/tickets');
+      let data = await response.json();
+      setTicketList(data);
+    }
+    getInitialData();
+  }, []);
   
-  const [ticketList, setTicketList] = useState([])
-  const [name, setName] = useState("")
-  const [question, setQuestion] = useState("")
+  const [ticketList, setTicketList] = useState([]);
+  const [name, setName] = useState("");
+  const [question, setQuestion] = useState("");
   // const [jsChecked, setJsChecked] = useState(false)
-  const [roomNumber, setRoomNumber] = useState(0)
-  const [problem, setProblem] = useState("")
-  const [description, setDescription] = useState("")
-  const [code, setCode] = useState("")
-  const [errorLog, setErrorLog] = useState("")
+  const [roomNumber, setRoomNumber] = useState(0);
+  const [problem, setProblem] = useState("");
+  const [description, setDescription] = useState("");
+  const [code, setCode] = useState("");
+  const [errorLog, setErrorLog] = useState("");
 
   // const jsCatOnChange = () => {
   //   setJsChecked(!jsChecked);
   // };
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const ticket = {
       id: uuidv4(),
@@ -77,8 +42,6 @@ function App() {
       code: code,
       errorLog: errorLog
     }
-
-    // POST request
     async function postData() {
       await fetch('http://localhost:8000/api/tickets', {
         method: 'POST',
@@ -88,35 +51,16 @@ function App() {
           console.log('new ticket added');
         })
       }
-      postData();
+      await postData();
     /* setTicketList([...ticketList, ticket]) */
     // GET request
     async function getData() {
       let response = await fetch('http://localhost:8000/api/tickets')
       let data = await response.json();
-      setTicketList(data)
-      console.log(data)
+      setTicketList(data);
     }
-    getData();
+    await getData();
   }
-
-  function handleAllTickets(event) {
-    event.preventDefault();
-    
-    // GET request
-    async function getData() {
-      let response = await fetch('http://localhost:8000/api/tickets')
-      let data = await response.json();
-      setTicketList(data)
-      console.log(data)
-    }
-    getData();
-  }
-
- /*  function handleChange(e) {
-    setName(e.target.value)
-  } */
-/* onChange={(e) => handleChange(e)} */
 
   return (
     <div className="App">
@@ -129,13 +73,9 @@ function App() {
 
       </div>
       <div className="test-container">
-      <button className="submit-button" onClick={handleAllTickets}>See All Tickets</button>
         {ticketList.map((ticket)=> {
-          /* console.log(ticket) */
           return (
-            
             <div key={ticket.id}>
-
               <Collapse defaultActiveKey={['1']}>
                 <Panel className="panel-header" header="This is panel header 1" key="1">
                   <div>

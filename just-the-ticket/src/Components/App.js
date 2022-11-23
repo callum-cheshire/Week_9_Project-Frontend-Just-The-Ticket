@@ -53,26 +53,16 @@ function App() {
   const [ticketList, setTicketList] = useState(mockTicket)
   const [name, setName] = useState("")
   const [question, setQuestion] = useState("")
-  const [jsChecked, setJsChecked] = useState(false)
+  // const [jsChecked, setJsChecked] = useState(false)
   const [roomNumber, setRoomNumber] = useState(0)
   const [problem, setProblem] = useState("")
   const [description, setDescription] = useState("")
   const [code, setCode] = useState("")
   const [errorLog, setErrorLog] = useState("")
 
-  useEffect(() => {
-    fetch('http://localhost:8000/api/tickets', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(ticketList)
-    }).then(() => {
-      console.log('new ticket added');
-    })
-  }, [ticketList])
-
-  const jsCatOnChange = () => {
-    setJsChecked(!jsChecked);
-  };
+  // const jsCatOnChange = () => {
+  //   setJsChecked(!jsChecked);
+  // };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -80,13 +70,23 @@ function App() {
       id: uuidv4(),
       name: name,
       question: question,
-      categories: jsChecked ? "JavaScipt" : "",
+      // categories: jsChecked ? "JavaScipt" : "",
       roomNumber: roomNumber,
       problem: problem,
       description: description,
       code: code,
       errorLog: errorLog
     }
+    async function fetchData() {
+      await fetch('http://localhost:8000/api/tickets', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ticket)
+      }).then(() => {
+        console.log('new ticket added');
+      })
+      }
+      fetchData();
     setTicketList([...ticketList, ticket])
   }
 

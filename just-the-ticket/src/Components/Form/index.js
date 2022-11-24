@@ -1,11 +1,11 @@
 // setName, setQuestion, setRoomNumber, setProblem, setDescription, setCode, setErrorLog, handleSubmit
 
 const Form = ({setTicket, userTicket, handleSubmit}) => {
+
   const handleChange = (event) => {
     setTicket({ ...userTicket, [event.target.name]: event.target.value })
-}
+  }
   return ( 
-    
     <form className="form-container" >
           <div className="name-room-container">
             <div className="name-input-container">
@@ -20,14 +20,14 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
                 />
             </div>
             <div className="room-input-container">
-              <label htmlFor="room-number">Room:</label>
+              <label htmlFor="roomNumber">Room:</label>
               <input 
                 type="number" 
                 className="input"
                 placeholder="#"
                 min="0" 
                 autoComplete="off"
-                name="room-number" 
+                name="roomNumber" 
                 onChange={handleChange}
                 />
             </div>
@@ -90,13 +90,13 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               />
           </div>
           <div className="input-container">
-            <label htmlFor="error-logs">Error Logs:</label>
+            <label htmlFor="errorLog">Error Logs:</label>
             <textarea 
               type="text" 
               className="area-input monospace-input" 
               autoComplete="off"
               placeholder="Paste any error logs you have recieved here..."  
-              name="error-logs" 
+              name="errorLog" 
               onChange={handleChange}
               />
           </div>

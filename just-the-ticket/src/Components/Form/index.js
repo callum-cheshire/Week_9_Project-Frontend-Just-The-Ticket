@@ -16,6 +16,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
                 autoComplete="off" 
                 placeholder="Your name or username..."
                 name="name" 
+                id="name"
                 onChange={handleChange}
                 value={userTicket.name}
                 required
@@ -30,6 +31,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
                 min="0" 
                 autoComplete="off"
                 name="roomNumber" 
+                id="roomNumber"
                 onChange={handleChange}
                 value={userTicket.roomNumber}
                 required
@@ -44,6 +46,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               placeholder="Enter a short title for your question..." 
               autoComplete="off" 
               name="question" 
+              id="question" 
               onChange={handleChange}
               value={userTicket.question}
               required
@@ -70,6 +73,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               autoComplete="off"
               placeholder="Break down the problem as you understand it so far..."  
               name="problem" 
+              id="problem"
               onChange={handleChange}
               value={userTicket.problem}
               required
@@ -83,6 +87,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               autoComplete="off" 
               placeholder="Describe the things have you already tried..."  
               name="description" 
+              id="description"
               onChange={handleChange}
               value={userTicket.description}
               required
@@ -96,6 +101,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               autoComplete="off" 
               placeholder="Paste some of your code to help provide context..." 
               name="code" 
+              id="code"
               onChange={handleChange}
               value={userTicket.code}
               required
@@ -109,6 +115,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               autoComplete="off"
               placeholder="Paste any error logs you have recieved here..."  
               name="errorLog" 
+              id="errorLog"
               onChange={handleChange}
               value={userTicket.errorLog}
               required

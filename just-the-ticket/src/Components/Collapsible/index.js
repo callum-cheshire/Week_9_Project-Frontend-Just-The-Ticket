@@ -5,6 +5,7 @@ import "./Collapsible.css"
 const Collapsible = ({ children, id, name, room, title }) => {
 
     const [open, setOpen] = useState(false);
+    const [completed, setCompleted] = useState(false);
 
     const contentRef = useRef();
 
@@ -15,7 +16,9 @@ const Collapsible = ({ children, id, name, room, title }) => {
         <div className="single-ticket-container">
             <div className="ticket-body-container">
                 <h3 className="ticket-info"> 
-                    <span className="status-span">● OPEN </span>-
+                    <span className={completed ? "status-span-closed" : "status-span-open"}>
+                        {completed ? "● CLOSED " : "● OPEN "}  
+                    </span>-
                     <span className="text-span"> Ticket {id}</span> - from 
                     <span className="name-span"> {name} </span> in  
                     <span className=""> Room {room} </span>
@@ -30,7 +33,8 @@ const Collapsible = ({ children, id, name, room, title }) => {
                 ref={contentRef}
                 style={open ? { height: contentRef.current.scrollHeight + "px" } : { height: "0px" }}
                 >   
-                    <div className="content"> {children} </div>
+                    <div className="content"> {children} </div> 
+                    <button onClick={() => setCompleted(!completed)}>Mark as complete</button>
                 </div>
             </div>
 
@@ -40,7 +44,7 @@ const Collapsible = ({ children, id, name, room, title }) => {
 export default Collapsible;
 
 
-// // USEREF COLLAPSE TUTORIAL ---> https://blog.openreplay.com/creating-a-collapsible-component-for-react/
+// USEREF COLLAPSE TUTORIAL ---> https://blog.openreplay.com/creating-a-collapsible-component-for-react/
 // const Collapsible = ({ label, children })=>{
 //     const [open, setOpen] = useState(false);
 //     const contentRef = useRef();

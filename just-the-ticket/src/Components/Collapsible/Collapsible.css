@@ -50,8 +50,13 @@ code {
     color: #4a566a;
 }
 
-.status-span {
+.status-span-open {
     color: #42c05b;
+    font-weight: 600;
+}
+
+.status-span-closed {
+    color: #4c9ce3;
     font-weight: 600;
 }
 

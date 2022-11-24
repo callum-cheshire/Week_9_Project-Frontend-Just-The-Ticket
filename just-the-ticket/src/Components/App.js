@@ -1,11 +1,11 @@
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
-import { Collapse } from 'antd';
 import Form from '../Components/Form'
-const { Panel } = Collapse;
+import Collapsible from './Collapsible';
 
-function App() {
+const App = () => {
+  
   useEffect(() => {
     async function getInitialData() {
       let response = await fetch('http://localhost:8000/api/tickets');
@@ -23,14 +23,16 @@ function App() {
     description: "",
     code: "",
     errorLog: ""})
+
   const [ticketList, setTicketList] = useState([]);
+  
   // const [jsChecked, setJsChecked] = useState(false)
 
   // const jsCatOnChange = () => {
   //   setJsChecked(!jsChecked);
   // };
 
-  async function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const ticket = {
       id: uuidv4(),
@@ -43,7 +45,8 @@ function App() {
       code: userTicket.code,
       errorLog: userTicket.errorLog
     }
-    async function postData() {
+
+    const postData = async () => {
       await fetch('http://localhost:8000/api/tickets', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -53,9 +56,9 @@ function App() {
         })
       }
       await postData();
-    /* setTicketList([...ticketList, ticket]) */
-    // GET request
-    async function getData() {
+
+
+    const getData = async () => {
       let response = await fetch('http://localhost:8000/api/tickets')
       let data = await response.json();
       setTicketList(data);
@@ -68,34 +71,50 @@ function App() {
       <div className="create-ticket-container">
         <div className="form-header-container">
           <h2 className="form-header">Create Ticket</h2>
-        </div>
-{/* 
-        setTicket={setTicket} handleSubmit={handleSubmit} setName={setName} setQuestion={setQuestion} setRoomNumber={setRoomNumber} setProblem={setProblem} setDescription={setDescription} setCode={setCode} setErrorLog={setErrorLog} */}
-        
+        </div>        
         <Form setTicket={setUserTicket} userTicket={userTicket} handleSubmit={handleSubmit} /> 
-
       </div>
-      <div className="test-container">
-        {ticketList.map((ticket)=> {
-          return (
-            <div key={ticket.id}>
-              <Collapse defaultActiveKey={['1']}>
-                <Panel className="panel-header" header="This is panel header 1" key="1">
-                  <div>
-                    <p className="1">{ticket.question_author}</p>
-                    <p className="2">{ticket.question_title}</p>
-                    <p className="3">{ticket.room_number}</p>
-                    <p className="4">{ticket.problem_summary}</p>
-                    <p className="5">{ticket.tried_input}</p>
-                    <p className="6">{ticket.description}</p>
-                    <p className="7">{ticket.code}</p>
-                    <p className="8">{ticket.error_logs}</p>
+      <div className="latest-tickets-container">
+        <div className="tickets-header-container">
+          <h2 className="tickets-header">Latest Tickets</h2>
+        </div>
+        <div className= "tickets-container">
+          {ticketList.map((ticket) => {
+            return (
+              <Collapsible key={ticket.id}
+                id={ticket.id} 
+                name={ticket.question_author} 
+                room={ticket.room_number}
+                title={ticket.question_title}
+              >
+                <div className="input-container">
+                  <label>Problem Summary:</label>
+                  <div className="ticket-details-container">
+                    <p className="ticket-p">{ticket.problem_summary}</p>
                   </div>
-                </Panel>
-              </Collapse>
-            </div>
-          )
-        } )}
+                </div>
+                <div className="input-container">
+                  <label>Steps Taken:</label>
+                  <div className="ticket-details-container">
+                    <p className="ticket-p">{ticket.tried_input}</p>
+                  </div>
+                </div>
+                <div className="monospace-container">
+                  <label>Code:</label>
+                  <div className="code-details-container">
+                    <code className="ticket-p">{ticket.code}</code>
+                  </div>
+                </div>
+                <div className="monospace-container">
+                  <label>Error Logs:</label>
+                  <div className="error-details-container">
+                    <code className="ticket-p">{ticket.error_logs}</code>
+                  </div> 
+                </div>
+              </Collapsible>
+            )
+          })}
+        </div>
       </div>
     </div>
   );

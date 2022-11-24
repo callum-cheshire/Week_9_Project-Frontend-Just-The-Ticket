@@ -66,6 +66,26 @@ const App = () => {
     await getData();
   }
 
+  const handleDelete = async (event, ticketId) => {
+    event.preventDefault();
+
+    const deleteData = async () => {
+      await fetch(`http://localhost:8000/api/tickets/${ticketId}`, {
+        method: 'DELETE'
+        }).then(() => {
+          console.log('new ticket deleted');
+        })
+      }
+      await deleteData();
+
+    const getData = async () => {
+      let response = await fetch('http://localhost:8000/api/tickets')
+      let data = await response.json();
+      setTicketList(data);
+    }
+    await getData();
+  }
+
   return (
     <div className="App">
       <div className="create-ticket-container">
@@ -86,6 +106,7 @@ const App = () => {
                 name={ticket.question_author} 
                 room={ticket.room_number}
                 title={ticket.question_title}
+                handleDelete={handleDelete}
               >
                 <div className="input-container">
                   <label>Problem Summary:</label>

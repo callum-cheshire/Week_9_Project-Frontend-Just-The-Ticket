@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import "./Collapsible.css"
 
-const Collapsible = ({ children, id, name, room, title }) => {
+const Collapsible = ({ children, id, name, room, title, handleDelete }) => {
 
     const [open, setOpen] = useState(false);
     const [completed, setCompleted] = useState(false);
@@ -35,6 +35,7 @@ const Collapsible = ({ children, id, name, room, title }) => {
                 >   
                     <div className="content"> {children} </div> 
                     <button onClick={() => setCompleted(!completed)}>Mark as complete</button>
+                    <button onClick={(e) => handleDelete(e, id)}>Delete ticket</button>
                 </div>
             </div>
 

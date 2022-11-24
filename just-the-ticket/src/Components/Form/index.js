@@ -17,6 +17,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
                 placeholder="Your name or username..."
                 name="name" 
                 onChange={handleChange}
+                value={userTicket.name}
+                required
                 />
             </div>
             <div className="room-input-container">
@@ -29,6 +31,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
                 autoComplete="off"
                 name="roomNumber" 
                 onChange={handleChange}
+                value={userTicket.roomNumber}
+                required
                 />
             </div>
           </div>
@@ -41,6 +45,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               autoComplete="off" 
               name="question" 
               onChange={handleChange}
+              value={userTicket.question}
+              required
               />
           </div>
           {/* <div className="input-container">
@@ -65,6 +71,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               placeholder="Break down the problem as you understand it so far..."  
               name="problem" 
               onChange={handleChange}
+              value={userTicket.problem}
+              required
               />
           </div>
           <div className="input-container">
@@ -76,6 +84,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               placeholder="Describe the things have you already tried..."  
               name="description" 
               onChange={handleChange}
+              value={userTicket.description}
+              required
               />
           </div>
           <div className="input-container">
@@ -87,6 +97,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               placeholder="Paste some of your code to help provide context..." 
               name="code" 
               onChange={handleChange}
+              value={userTicket.code}
+              required
               />
           </div>
           <div className="input-container">
@@ -98,6 +110,8 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
               placeholder="Paste any error logs you have recieved here..."  
               name="errorLog" 
               onChange={handleChange}
+              value={userTicket.errorLog}
+              required
               />
           </div>
           

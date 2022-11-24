@@ -6,6 +6,7 @@ code {
 
 .latest-tickets-container {
     border:1px solid var(--primary-border-color);
+    background-color: var(--primary-background-colour);
     margin-top: 100px;
     margin-bottom: 500px;
     border-radius: 10px;
@@ -170,4 +171,49 @@ code {
 .content-show {
     height: 200px;
     margin-top: 40px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.complete-button {
+    max-width: 150px;
+    width: 150px;
+    height: 50px;
+    padding: 10px 20px 10px 20px;
+    border: 0;
+    background-color: var(--primary-button-color);
+    color: var(--button-font-color);
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+  
+.complete-button:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: var(--primary-button-hover);
+}
+
+.delete-button {
+    max-width: 150px;
+    width: 150px;
+    height: 50px;
+    padding: 10px 20px 10px 20px;
+    border: 0;
+    background-color: var(--delete-button);
+    color: var(--button-font-color);
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+  
+.delete-button:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: var(--delete-button-hover);
 }

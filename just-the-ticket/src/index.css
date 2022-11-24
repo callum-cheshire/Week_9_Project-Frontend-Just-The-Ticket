@@ -34,11 +34,14 @@
 :root {
   --primary-background-colour: #181E2E;
   --secondary-background-colour: #212a3a;
+  --dark-background-colour: #111420;
   --primary-text-colour: #cad2d9;
   --secondary-text-color: #808a93;
   --third-text-color: #c9d1d9;
   --primary-button-color: #218636;
   --primary-button-hover: #2aaf44;
+  --delete-button: #c72929;
+  --delete-button-hover: #cd4949;
   --button-font-color: #FFFFFF;
   --primary-border-color: #343a46;
   --primary-border-hover: #596377;
@@ -60,7 +63,7 @@ body {
   vertical-align: middle;
   min-height: 100vh;
   width: 1080px;
-  background-color: var(--primary-background-colour);
+  background-color: var(--dark-background-colour);
   color: var(--primary-text-colour);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -71,6 +74,7 @@ body {
 
 .create-ticket-container {
   border:1px solid var(--primary-border-color);
+  background-color: var(--primary-background-colour);
   padding: 0px;
   margin-top: 100px;
   border-radius: 10px;

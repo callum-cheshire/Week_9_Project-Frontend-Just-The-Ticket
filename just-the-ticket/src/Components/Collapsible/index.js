@@ -33,9 +33,11 @@ const Collapsible = ({ children, id, name, room, title, handleDelete }) => {
                 ref={contentRef}
                 style={open ? { height: contentRef.current.scrollHeight + "px" } : { height: "0px" }}
                 >   
-                    <div className="content"> {children} </div> 
-                    <button onClick={() => setCompleted(!completed)}>Mark as complete</button>
-                    <button onClick={(e) => handleDelete(e, id)}>Delete ticket</button>
+                    <div className="content"> {children} </div>
+                    <div className="button-container">
+                    <button className="complete-button" onClick={() => setCompleted(!completed)}>Resolve</button>
+                    <button className="delete-button" onClick={(e) => handleDelete(e, id)}>Delete</button>
+                    </div>
                 </div>
             </div>
 

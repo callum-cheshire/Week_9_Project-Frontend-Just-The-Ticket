@@ -18,7 +18,7 @@ const App = () => {
   const [userTicket, setUserTicket] = useState({
     name: "",
     question: "",
-    roomNumber: 0,
+    roomNumber: "",
     problem: "",
     description: "",
     code: "",
@@ -33,6 +33,16 @@ const App = () => {
   // };
 
   const handleSubmit = async (event) => {
+    if (
+      userTicket.name === "" || 
+      userTicket.question === "" || 
+      userTicket.roomNumber === "" ||
+      userTicket.problem === "" ||
+      userTicket.description === "" ||
+      userTicket.code === "" ||
+      userTicket.errorLog === "") 
+      return alert("All must be filled out");
+    
     event.preventDefault();
     const ticket = {
       id: uuidv4(),
@@ -45,6 +55,15 @@ const App = () => {
       code: userTicket.code,
       errorLog: userTicket.errorLog
     }
+
+    setUserTicket({
+      name: "",
+      question: "",
+      roomNumber: "",
+      problem: "",
+      description: "",
+      code: "",
+      errorLog: ""})
 
     const postData = async () => {
       await fetch('http://localhost:8000/api/tickets', {

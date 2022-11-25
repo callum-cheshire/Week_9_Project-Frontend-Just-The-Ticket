@@ -92,7 +92,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
             <label htmlFor="code">Code:</label>
             <textarea 
               type="text" 
-              className="area-input monospace-input"
+              className="code-area-input"
               autoComplete="off" 
               placeholder="Paste some of your code to help provide context..." 
               name="code" 
@@ -105,7 +105,7 @@ const Form = ({setTicket, userTicket, handleSubmit}) => {
             <label htmlFor="errorLog">Error Logs:</label>
             <textarea 
               type="text" 
-              className="area-input monospace-input" 
+              className="error-area-input" 
               autoComplete="off"
               placeholder="Paste any error logs you have recieved here..."  
               name="errorLog" 

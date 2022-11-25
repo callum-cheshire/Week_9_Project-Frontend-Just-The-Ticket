@@ -175,7 +175,8 @@ code {
 
 .button-container {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 30px;
 }
 
 .complete-button {
@@ -189,7 +190,8 @@ code {
     font-size: 20px;
     font-weight: 700;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-bottom: 20px;
 }
   
 .complete-button:hover {
@@ -198,22 +200,44 @@ code {
     background-color: var(--primary-button-hover);
 }
 
+.reopen-button {
+    max-width: 150px;
+    width: 150px;
+    height: 50px;
+    padding: 10px 20px 10px 20px;
+    border: 0;
+    border:1px solid var(--primary-border-color);
+    background-color: var(--primary-background-colour);
+    color: var(--button-font-color);
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+  
+.reopen-button:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: var(--secondary-background-colour);
+}
+
 .delete-button {
     max-width: 150px;
     width: 150px;
     height: 50px;
     padding: 10px 20px 10px 20px;
     border: 0;
-    background-color: var(--delete-button);
+    border:1px solid var(--primary-border-color);
+    background-color: var(--secondary-background-colour);
     color: var(--button-font-color);
     font-size: 20px;
     font-weight: 700;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
   
 .delete-button:hover {
     cursor: pointer;
     transition: 0.5s;
-    background-color: var(--delete-button-hover);
+    background-color: var(--delete-button);
 }

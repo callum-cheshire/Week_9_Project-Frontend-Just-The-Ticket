@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import Form from '../Components/Form'
 import Collapsible from './Collapsible';
+import NavBar from './NavBar';
+import { confirmAlert } from 'react-confirm-alert';
 
 const App = () => {
   
@@ -55,7 +57,6 @@ const App = () => {
       code: userTicket.code,
       errorLog: userTicket.errorLog
     }
-
     setUserTicket({
       name: "",
       question: "",
@@ -71,42 +72,70 @@ const App = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(ticket)
         }).then(() => {
-          console.log('new ticket added');
+          console.log('✅ New ticket CREATED');
         })
       }
       await postData();
 
-
     const getData = async () => {
       let response = await fetch('http://localhost:8000/api/tickets')
+      console.log('✅ All tickets READ');
+      
       let data = await response.json();
       setTicketList(data);
     }
     await getData();
+
+    alert("Thank you for your submission. You can find your new ticket in the latest tickets section.")
   }
 
-  const handleDelete = async (event, ticketId) => {
-    event.preventDefault();
+  const deleteTicket = (event, ticketId) => {
 
-    const deleteData = async () => {
-      await fetch(`http://localhost:8000/api/tickets/${ticketId}`, {
-        method: 'DELETE'
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="alert">
+            <h1 className="alert__title">Delete Ticket</h1>
+            <p className="alert__body">Warning: This action is irreversible. <br/> Are you sure you want to delete this ticket?</p>
+            <button
+              onClick={() => {
+                onClose();
+                handleDelete(event, ticketId);
+              }}
+              className="alert__btn alert__btn--yes"
+            >
+              Delete
+            </button>
+            <button onClick={onClose} className="alert__btn alert__btn--no"> Cancel </button>
+          </div>
+        );
+      }
+    });
+    
+    const handleDelete = async (event, ticketId) => {
+      event.preventDefault();
+      
+      const deleteData = async () => {
+        await fetch(`http://localhost:8000/api/tickets/${ticketId}`, {
+          method: 'DELETE'
         }).then(() => {
-          console.log('new ticket deleted');
+          console.log(`✅ Ticket ${ticketId} DELETED`);
         })
       }
       await deleteData();
-
-    const getData = async () => {
-      let response = await fetch('http://localhost:8000/api/tickets')
-      let data = await response.json();
-      setTicketList(data);
+      
+      const getData = async () => {
+        let response = await fetch('http://localhost:8000/api/tickets')
+        let data = await response.json();
+        setTicketList(data);
+      }
+      await getData();
     }
-    await getData();
   }
-
   return (
     <div className="App">
+    <NavBar />
+    <div className="main-container">
       <div className="create-ticket-container">
         <div className="form-header-container">
           <h2 className="form-header">Create Ticket</h2>
@@ -125,7 +154,7 @@ const App = () => {
                 name={ticket.question_author} 
                 room={ticket.room_number}
                 title={ticket.question_title}
-                handleDelete={handleDelete}
+                handleDelete={deleteTicket}
               >
                 <div className="input-container">
                   <label>Problem Summary:</label>
@@ -155,6 +184,7 @@ const App = () => {
             )
           })}
         </div>
+      </div>
       </div>
     </div>
   );

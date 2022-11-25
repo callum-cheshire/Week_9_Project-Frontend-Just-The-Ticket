@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400&display=swap');
+
 /* lightmode */
 /* :root {
   --primary-background-colour: #F6F8FA;
@@ -48,10 +50,14 @@
   --header-size: 38px;
   --main-text-size: 18px;
   --border-radius: 10px;
+  
+  color-scheme: dark;
+  
 }
 /* --primary-button-color: #1ac488;
 --primary-button-hover: #00FFA5;
 --button-font-color: #181E2E; */
+
 
 html {
   display: table;
@@ -59,10 +65,11 @@ html {
 }
 
 body {
+  margin-top: 30px;
   display: table-cell;
   vertical-align: middle;
-  min-height: 100vh;
-  width: 1080px;
+  width: 100vw;
+  min-height: 100%;
   background-color: var(--dark-background-colour);
   color: var(--primary-text-colour);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -72,11 +79,104 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  width: 100%;
+  display: flex;
+  direction: column;
+  justify-content: center;
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: var(--primary-background-colour);
+  border:1px solid var(--primary-border-color);
+  border-radius: 10px;
+  padding: 50px;
+  backdrop-filter: blur(8px);
+}
+
+.alert__title {
+  margin-top: 0;
+  font-size: var(--header-size);
+}
+
+.alert__body {
+  font-size: 22px;
+  line-height: 2em;
+  margin-bottom: 10px;
+}
+
+.warning-text {
+  color: var(--delete-button);
+}
+
+.alert__btn--no {
+  max-width: 150px;
+  width: 150px;
+  height: 50px;
+  padding: 10px 20px 10px 20px;
+  border: 0;
+  background-color: #2d3a51;
+  color: var(--button-font-color);
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.alert__btn--no:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background-color: #3a4b68;
+}
+
+.alert__btn--yes {
+  max-width: 150px;
+  width: 150px;
+  height: 50px;
+  padding: 10px 20px 10px 20px;
+  border: 0;
+  background-color: var(--delete-button);
+  color: var(--button-font-color);
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.alert__btn--yes:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background-color: var(--delete-button-hover);
+}
+
+.submit-button {
+  max-width: 150px;
+  height: 50px;
+  padding: 10px 20px 10px 20px;
+  border: 0;
+  background-color: var(--primary-button-color);
+  color: var(--button-font-color);
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.main-container {
+  width: 1080px;
+}
+
 .create-ticket-container {
   border:1px solid var(--primary-border-color);
   background-color: var(--primary-background-colour);
   padding: 0px;
-  margin-top: 100px;
+  margin-top: 170px;
   border-radius: 10px;
 }
 
@@ -172,6 +272,7 @@ label {
   height: 60px;
   padding: 10px;
   border-radius: 5px;
+  line-height: 1.6em;
 }
 
 .area-input:hover {
@@ -191,8 +292,63 @@ label {
   font-family: sans-serif;
 }
 
-.monospace-input {
-  font-family: monospace;
+.code-area-input {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--secondary-background-colour);
+  border:1px solid var(--primary-border-color);
+  color: #aec8de;
+  font-size: 18px;
+  height: 60px;
+  padding: 10px;
+  line-height: 1.6em;
+}
+
+.code-area-input:hover {
+  outline: none !important;
+  border:1px solid var(--primary-border-hover);
+  transition: 0.5s;
+}
+
+.code-area-input:focus {
+  outline: none !important;
+  border:1px solid var(--primary-border-hover);
+}
+
+.code-area-input::placeholder {
+  opacity: .3;
+  color: var(--primary-text-colour);
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.error-area-input {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--secondary-background-colour);
+  border:1px solid var(--primary-border-color);
+  color: #d27575;
+  font-size: 18px;
+  height: 60px;
+  padding: 10px;
+  border-radius: 5px;
+  line-height: 1.6em;;
+}
+
+.error-area-input:hover {
+  outline: none !important;
+  border:1px solid var(--primary-border-hover);
+  transition: 0.5s;
+}
+
+.error-area-input:focus {
+  outline: none !important;
+  border:1px solid var(--primary-border-hover);
+}
+
+.error-area-input::placeholder {
+  opacity: .3;
+  color: var(--primary-text-colour);
+  font-family: sans-serif;
+  font-size: 20px;
 }
 
 .submit-button {

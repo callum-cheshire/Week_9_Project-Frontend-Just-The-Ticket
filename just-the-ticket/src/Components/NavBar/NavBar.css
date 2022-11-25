@@ -1,0 +1,27 @@
+.nav-bar {
+    overflow: hidden;
+    background-color: #181E2E;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100vw; /* Full width */
+    height: 100px;
+    z-index:99;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:1px solid var(--primary-border-color);
+    padding-right: 50px;
+    min-width: 0;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    margin-left: 70px;
+}
+
+.hamburger {
+    height: 27px;
+    width: auto;
+    margin-right: 30px;
+}

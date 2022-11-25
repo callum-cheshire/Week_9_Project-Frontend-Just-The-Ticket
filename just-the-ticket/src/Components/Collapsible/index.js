@@ -35,7 +35,9 @@ const Collapsible = ({ children, id, name, room, title, handleDelete }) => {
                 >   
                     <div className="content"> {children} </div>
                     <div className="button-container">
-                    <button className="complete-button" onClick={() => setCompleted(!completed)}>Resolve</button>
+                    <button className={completed ? "reopen-button" : "complete-button"}  onClick={() => {
+                        setCompleted(!completed)
+                        console.log(`✅ Ticket ${id} UPDATED`);}}> {completed ? "Reopen" : "Resolve"}</button>
                     <button className="delete-button" onClick={(e) => handleDelete(e, id)}>Delete</button>
                     </div>
                 </div>

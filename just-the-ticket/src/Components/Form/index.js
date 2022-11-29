@@ -1,4 +1,5 @@
 import Input from "../Input";
+import Textarea from "../Textarea";
 
 const Form = ({ setTicket, userTicket, handleSubmit }) => {
   const handleChange = (event) => {
@@ -9,101 +10,83 @@ const Form = ({ setTicket, userTicket, handleSubmit }) => {
       <div className="name-room-container">
         <Input
           containerClassName="name-input-container"
-          type="text"
           inputClassName="input"
-          autoComplete="off"
-          placeholder="Your name or username..."
+          label="Name:"
+          type="text"
           htmlName="name"
+          placeholder="Your name or username..."
+          autoComplete="off"
           handleChange={handleChange}
           value={userTicket.name}
-          label="Name:"
         />
-        <div className="room-input-container">
-          <label htmlFor="roomNumber">Room:</label>
-          <input
-            type="number"
-            className="input"
-            placeholder="#"
-            min="0"
-            autoComplete="off"
-            name="roomNumber"
-            id="roomNumber"
-            onChange={handleChange}
-            value={userTicket.roomNumber}
-            required
-          />
-        </div>
+        <Input
+          containerClassName="room-input-container"
+          inputClassName="input"
+          label="Room:"
+          type="number"
+          htmlName="roomNumber"
+          placeholder="#"
+          autoComplete="off"
+          handleChange={handleChange}
+          min="0"
+          value={userTicket.roomNumber}
+        />
       </div>
-      <div className="input-container">
-        <label htmlFor="question">Ticket Title:</label>
-        <input
+      <Input
+          containerClassName="input-container"
+          inputClassName="input"
+          label="Ticket Title:"
           type="text"
-          className="input"
+          htmlName="question"
           placeholder="Enter a short title for your question..."
           autoComplete="off"
-          name="question"
-          id="question"
-          onChange={handleChange}
+          handleChange={handleChange}
           value={userTicket.question}
-          required
         />
-      </div>
-      <div className="input-container">
-        <label htmlFor="problem">Problem Summary:</label>
-        <textarea
+      <Textarea
+          containerClassName="input-container"
+          inputClassName="area-input"
+          label="Problem Summary:"
           type="text"
-          className="area-input"
-          autoComplete="off"
+          htmlName="problem"
           placeholder="Break down the problem as you understand it so far..."
-          name="problem"
-          id="problem"
-          onChange={handleChange}
+          autoComplete="off"
+          handleChange={handleChange}
           value={userTicket.problem}
-          required
         />
-      </div>
-      <div className="input-container">
-        <label htmlFor="description">Steps Taken:</label>
-        <textarea
+      <Textarea
+          containerClassName="input-container"
+          inputClassName="area-input"
+          label="Steps Taken:"
           type="text"
-          className="area-input"
+          htmlName="description"
+          placeholder="Describe the things you already tried..."
           autoComplete="off"
-          placeholder="Describe the things have you already tried..."
-          name="description"
-          id="description"
-          onChange={handleChange}
+          handleChange={handleChange}
           value={userTicket.description}
-          required
         />
-      </div>
-      <div className="input-container">
-        <label htmlFor="code">Code:</label>
-        <textarea
+      <Textarea
+          containerClassName="input-container"
+          inputClassName="code-area-input"
+          label="Code:"
           type="text"
-          className="code-area-input"
-          autoComplete="off"
+          htmlName="code"
           placeholder="Paste some of your code to help provide context..."
-          name="code"
-          id="code"
-          onChange={handleChange}
-          value={userTicket.code}
-          required
-        />
-      </div>
-      <div className="input-container">
-        <label htmlFor="errorLog">Error Logs:</label>
-        <textarea
-          type="text"
-          className="error-area-input"
           autoComplete="off"
-          placeholder="Paste any error logs you have recieved here..."
-          name="errorLog"
-          id="errorLog"
-          onChange={handleChange}
-          value={userTicket.errorLog}
-          required
+          handleChange={handleChange}
+          value={userTicket.code}
         />
-      </div>
+      <Textarea
+          containerClassName="input-container"
+          inputClassName="error-area-input"
+          label="Error Logs:"
+          type="text"
+          htmlName="errorLog"
+          placeholder="Paste any error logs you have recieved here..."
+          autoComplete="off"
+          handleChange={handleChange}
+          value={userTicket.errorLog}
+        />
 
       <button className="submit-button" type="submit" onClick={handleSubmit}>
         Submit

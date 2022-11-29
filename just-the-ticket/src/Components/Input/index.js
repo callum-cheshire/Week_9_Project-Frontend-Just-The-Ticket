@@ -1,20 +1,32 @@
-const Input = ({handleChange, htmlName, type, inputClassName, autoComplete, placeholder, value, containerClassName, label}) => {
-  return ( 
+const Input = ({
+  handleChange,
+  htmlName,
+  type,
+  inputClassName,
+  autoComplete,
+  placeholder,
+  value,
+  containerClassName,
+  label,
+  min,
+}) => {
+  return (
     <div className={containerClassName}>
       <label htmlFor={htmlName}>{label}</label>
-      <input 
-        type={type} 
+      <input
         className={inputClassName}
-        autoComplete={autoComplete} 
+        type={type}
+        autoComplete={autoComplete}
         placeholder={placeholder}
-        name={htmlName} 
+        name={htmlName}
         id={htmlName}
         onChange={handleChange}
         value={value}
+        min={min}
         required
-        />
-  </div>
-   );
-}
- 
+      />
+    </div>
+  );
+};
+
 export default Input;

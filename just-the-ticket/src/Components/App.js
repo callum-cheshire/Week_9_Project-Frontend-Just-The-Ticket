@@ -9,6 +9,9 @@ import { confirmAlert } from 'react-confirm-alert';
 const App = () => {
   
   useEffect(() => {
+    /**
+     * JSDoc eg
+     */
     async function getInitialData() {
       let response = await fetch('http://localhost:8000/api/tickets');
       let data = await response.json();
@@ -17,6 +20,9 @@ const App = () => {
     getInitialData();
   }, []);
 
+
+  const [ticketList, setTicketList] = useState([])
+  // const { name, question } = ticketList
   const [userTicket, setUserTicket] = useState({
     name: "",
     question: "",
@@ -26,7 +32,6 @@ const App = () => {
     code: "",
     errorLog: ""})
 
-  const [ticketList, setTicketList] = useState([]);
   
   // const [jsChecked, setJsChecked] = useState(false)
 
@@ -35,6 +40,7 @@ const App = () => {
   // };
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     if (
       userTicket.name === "" || 
       userTicket.question === "" || 
@@ -42,12 +48,12 @@ const App = () => {
       userTicket.problem === "" ||
       userTicket.description === "" ||
       userTicket.code === "" ||
-      userTicket.errorLog === "") 
+      userTicket.errorLog === ""
+    ) {
       return alert("All must be filled out");
+    }
     
-    event.preventDefault();
     const ticket = {
-      id: uuidv4(),
       name: userTicket.name,
       question: userTicket.question,
       // categories: jsChecked ? "JavaScipt" : "",
@@ -57,6 +63,7 @@ const App = () => {
       code: userTicket.code,
       errorLog: userTicket.errorLog
     }
+    // clears form after submit
     setUserTicket({
       name: "",
       question: "",

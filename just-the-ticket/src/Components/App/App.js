@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import Collapsible from '../Collapsible';
 import Form from '../Form'
+import Heading2 from '../Heading2';
 import NavBar from '../NavBar';
 import './App.css';
 
@@ -134,10 +135,13 @@ const App = () => {
     <div className="App">
     <NavBar />
     <div className="main-container">
+
       <div className="create-ticket-container">
-        <div className="form-header-container">
-          <h2 className="form-header">Create Ticket</h2>
-        </div>        
+       <Heading2 
+          containerClassName="form-header-container" 
+          headingClassName="form-header"
+        /> 
+
         <Form setTicket={setUserTicket} userTicket={userTicket} handleSubmit={handleSubmit} /> 
       </div>
       <div className="latest-tickets-container">

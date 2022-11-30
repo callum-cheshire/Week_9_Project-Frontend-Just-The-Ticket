@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import Form from '../Components/Form'
-import Collapsible from './Collapsible';
-import NavBar from './NavBar';
+import Form from '../Form'
+import Collapsible from '../Collapsible';
+import NavBar from '../NavBar';
 import { confirmAlert } from 'react-confirm-alert';
 
 const App = () => {

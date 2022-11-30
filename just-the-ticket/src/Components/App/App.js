@@ -139,7 +139,8 @@ const App = () => {
       <div className="create-ticket-container">
        <Heading2 
           containerClassName="form-header-container" 
-          headingClassName="form-header"
+          headingClassName="form-header" 
+          text="Create Ticket"
         /> 
 
         <Form setTicket={setUserTicket} userTicket={userTicket} handleSubmit={handleSubmit} /> 

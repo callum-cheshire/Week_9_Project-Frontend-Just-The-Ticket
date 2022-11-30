@@ -1,7 +1,7 @@
-const Heading2 = ({ containerClassName, headingClassName }) => {
+const Heading2 = ({ containerClassName, headingClassName, text }) => {
     return (
     <div className={containerClassName}>
-        <h2 className={headingClassName}>Create Ticket</h2>
+        <h2 className={headingClassName} >{text}</h2>
     </div>
     )
 }

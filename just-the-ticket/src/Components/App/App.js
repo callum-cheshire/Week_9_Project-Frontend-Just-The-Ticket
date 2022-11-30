@@ -4,6 +4,7 @@ import Collapsible from '../Collapsible';
 import Form from '../Form'
 import Heading2 from '../Heading2';
 import NavBar from '../NavBar';
+import TicketDetails from '../TicketDetails';
 import './App.css';
 
 const App = () => {
@@ -159,18 +160,30 @@ const App = () => {
                 title={ticket.question_title}
                 handleDelete={deleteTicket}
               >
-                <div className="input-container">
-                  <label>Problem Summary:</label>
-                  <div className="ticket-details-container">
-                    <p className="ticket-p">{ticket.problem_summary}</p>
-                  </div>
-                </div>
-                <div className="input-container">
-                  <label>Steps Taken:</label>
-                  <div className="ticket-details-container">
-                    <p className="ticket-p">{ticket.tried_input}</p>
-                  </div>
-                </div>
+
+                <TicketDetails 
+                containerClassName = "input-container"
+                label="Problem Summary:"
+                detailsContainerClassName="ticket-details-container"
+                text={ticket.problem_summary}
+                pClassName= "text"
+              /> 
+
+                <TicketDetails 
+                containerClassName = "input-container"
+                label="Steps Taken:"
+                detailsContainerClassName="ticket-details-container"
+                text={ticket.problem_summary}
+                pClassName= "text"
+              /> 
+                <TicketDetails 
+                containerClassName = "monospace-container"
+                label="Code:"
+                detailsContainerClassName="code-details-container"
+                text={ticket.code}
+                pClassName= "text"
+              /> 
+                
                 <div className="monospace-container">
                   <label>Code:</label>
                   <div className="code-details-container">

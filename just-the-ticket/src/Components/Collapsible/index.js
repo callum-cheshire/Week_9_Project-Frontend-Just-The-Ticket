@@ -1,6 +1,20 @@
 import { useState, useRef } from 'react';
 import "./Collapsible.css"
 
+/**
+ * Collapsible creates a expandable container component which houses the existing tickets.
+ *
+ * @param {props} children
+ * @param {string} id
+ * @param {string} name 
+ * @param {string} room 
+ * @param {string} title 
+ * @param {function} handleDelete
+ * 
+ * @returns Collapsible* component which contains current tickets and displays them when toggled
+ */
+
+
 const Collapsible = ({ children, id, name, room, title, handleDelete }) => {
 
     const [open, setOpen] = useState(false);

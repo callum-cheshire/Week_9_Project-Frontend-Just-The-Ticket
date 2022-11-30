@@ -1,9 +1,9 @@
-import './App.css';
 import { useEffect, useState } from 'react';
-import Form from '../Form'
-import Collapsible from '../Collapsible';
-import NavBar from '../NavBar';
 import { confirmAlert } from 'react-confirm-alert';
+import Collapsible from '../Collapsible';
+import Form from '../Form'
+import NavBar from '../NavBar';
+import './App.css';
 
 const App = () => {
   
@@ -21,7 +21,6 @@ const App = () => {
 
 
   const [ticketList, setTicketList] = useState([])
-  // const { name, question } = ticketList
   const [userTicket, setUserTicket] = useState({
     name: "",
     question: "",
@@ -30,13 +29,6 @@ const App = () => {
     description: "",
     code: "",
     errorLog: ""})
-
-  
-  // const [jsChecked, setJsChecked] = useState(false)
-
-  // const jsCatOnChange = () => {
-  //   setJsChecked(!jsChecked);
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,13 +47,13 @@ const App = () => {
     const ticket = {
       name: userTicket.name,
       question: userTicket.question,
-      // categories: jsChecked ? "JavaScipt" : "",
       roomNumber: userTicket.roomNumber,
       problem: userTicket.problem,
       description: userTicket.description,
       code: userTicket.code,
       errorLog: userTicket.errorLog
     }
+    
     // clears form after submit
     setUserTicket({
       name: "",

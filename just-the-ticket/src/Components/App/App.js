@@ -10,9 +10,6 @@ import './App.css';
 const App = () => {
   
   useEffect(() => {
-    /**
-     * JSDoc eg
-     */
     async function getInitialData() {
       let response = await fetch('http://localhost:8000/api/tickets');
       let data = await response.json();
@@ -160,42 +157,35 @@ const App = () => {
                 title={ticket.question_title}
                 handleDelete={deleteTicket}
               >
-
                 <TicketDetails 
-                containerClassName = "input-container"
-                label="Problem Summary:"
-                detailsContainerClassName="ticket-details-container"
-                text={ticket.problem_summary}
-                pClassName= "text"
-              /> 
-
+                  containerClassName ="input-container"
+                  label="Problem Summary:"
+                  detailsContainerClassName="ticket-details-container"
+                  text={ticket.problem_summary}
+                  pClassName="ticket-p"
+                  tag="p"
+                /> 
                 <TicketDetails 
-                containerClassName = "input-container"
-                label="Steps Taken:"
-                detailsContainerClassName="ticket-details-container"
-                text={ticket.problem_summary}
-                pClassName= "text"
-              /> 
+                  containerClassName="input-container"
+                  label="Steps Taken:"
+                  detailsContainerClassName="ticket-details-container"
+                  text={ticket.problem_summary}
+                  pClassName="ticket-p"
+                /> 
                 <TicketDetails 
-                containerClassName = "monospace-container"
-                label="Code:"
-                detailsContainerClassName="code-details-container"
-                text={ticket.code}
-                pClassName= "text"
-              /> 
-                
-                <div className="monospace-container">
-                  <label>Code:</label>
-                  <div className="code-details-container">
-                    <code className="ticket-p">{ticket.code}</code>
-                  </div>
-                </div>
-                <div className="monospace-container">
-                  <label>Error Logs:</label>
-                  <div className="error-details-container">
-                    <code className="ticket-p">{ticket.error_logs}</code>
-                  </div> 
-                </div>
+                  containerClassName="monospace-container"
+                  label="Code:"
+                  detailsContainerClassName="code-details-container"
+                  text={ticket.code}
+                  pClassName="ticket-code"
+                /> 
+                <TicketDetails 
+                  containerClassName="monospace-container"
+                  label="Error Logs:"
+                  detailsContainerClassName="error-details-container"
+                  text={ticket.error_logs}
+                  pClassName="ticket-code"
+                />
               </Collapsible>
             )
           })}

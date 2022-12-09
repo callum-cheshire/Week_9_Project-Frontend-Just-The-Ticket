@@ -121,6 +121,11 @@ code {
     margin: 0px;
 }
 
+.ticket-code {
+    margin: 0px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
 .monospace-container {
     width: 100%;
     display: flex;

@@ -27,19 +27,13 @@ const App = () => {
     problem: "",
     description: "",
     code: "",
-    errorLog: ""})
+    errorLog: ""
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      userTicket.name === "" || 
-      userTicket.question === "" || 
-      userTicket.roomNumber === "" ||
-      userTicket.problem === "" ||
-      userTicket.description === "" ||
-      userTicket.code === "" ||
-      userTicket.errorLog === ""
-    ) {
+    
+    if (Object.values(userTicket).some(input => input === "")) {
       return alert("All must be filled out");
     }
     

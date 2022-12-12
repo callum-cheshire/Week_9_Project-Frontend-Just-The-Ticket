@@ -5,6 +5,7 @@ import Form from '../Form'
 import Heading2 from '../Heading2';
 import NavBar from '../NavBar';
 import TicketDetails from '../TicketDetails';
+import emptyTicket from "../../data/emptyTicket.js"
 import './App.css';
 
 const App = () => {
@@ -20,15 +21,7 @@ const App = () => {
 
 
   const [ticketList, setTicketList] = useState([])
-  const [userTicket, setUserTicket] = useState({
-    name: "",
-    question: "",
-    roomNumber: "",
-    problem: "",
-    description: "",
-    code: "",
-    errorLog: ""
-  });
+  const [userTicket, setUserTicket] = useState(emptyTicket);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,14 +41,7 @@ const App = () => {
     }
     
     // clears form after submit
-    setUserTicket({
-      name: "",
-      question: "",
-      roomNumber: "",
-      problem: "",
-      description: "",
-      code: "",
-      errorLog: ""})
+    setUserTicket(emptyTicket);
 
     const postData = async () => {
       await fetch('http://localhost:8000/api/tickets', {
@@ -64,9 +50,9 @@ const App = () => {
         body: JSON.stringify(ticket)
         }).then(() => {
           console.log('✅ New ticket CREATED');
-        })
-      }
-      await postData();
+        });
+    }
+    await postData();
 
     const getData = async () => {
       let response = await fetch('http://localhost:8000/api/tickets')

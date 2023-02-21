@@ -68,18 +68,23 @@ const App = () => {
     });
 
     const postData = async () => {
-      await fetch("http://localhost:8000/api/tickets", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ticket),
-      }).then(() => {
+      await fetch(
+        "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(ticket),
+        }
+      ).then(() => {
         console.log("✅ New ticket CREATED");
       });
     };
     await postData();
 
     const getData = async () => {
-      let response = await fetch("http://localhost:8000/api/tickets");
+      let response = await fetch(
+        "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets"
+      );
       console.log("✅ All tickets READ");
 
       let data = await response.json();
@@ -124,16 +129,21 @@ const App = () => {
       event.preventDefault();
 
       const deleteData = async () => {
-        await fetch(`http://localhost:8000/api/tickets/${ticketId}`, {
-          method: "DELETE",
-        }).then(() => {
+        await fetch(
+          `https://just-the-ticket-backend-2kjz.onrender.com/api/tickets/${ticketId}`,
+          {
+            method: "DELETE",
+          }
+        ).then(() => {
           console.log(`✅ Ticket ${ticketId} DELETED`);
         });
       };
       await deleteData();
 
       const getData = async () => {
-        let response = await fetch("http://localhost:8000/api/tickets");
+        let response = await fetch(
+          "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets"
+        );
         let data = await response.json();
         setTicketList(data);
       };

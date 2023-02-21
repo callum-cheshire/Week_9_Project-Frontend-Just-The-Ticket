@@ -44,11 +44,14 @@ const App = () => {
     setUserTicket(emptyTicket);
 
     const postData = async () => {
-      await fetch("http://localhost:8000/api/tickets", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ticket),
-      }).then(() => {
+      await fetch(
+        "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(ticket),
+        }
+      ).then(() => {
         console.log("✅ New ticket CREATED");
       });
     };

@@ -4,13 +4,12 @@ import Collapsible from "../Collapsible";
 import Form from "../Form";
 import Heading2 from "../Heading2";
 import NavBar from "../NavBar";
+import TicketDetails from "../TicketDetails";
+import emptyTicket from "../../data/emptyTicket.js";
 import "./App.css";
 
 const App = () => {
   useEffect(() => {
-    /**
-     * JSDoc eg
-     */
     async function getInitialData() {
       let response = await fetch(
         "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets"
@@ -22,27 +21,12 @@ const App = () => {
   }, []);
 
   const [ticketList, setTicketList] = useState([]);
-  const [userTicket, setUserTicket] = useState({
-    name: "",
-    question: "",
-    roomNumber: "",
-    problem: "",
-    description: "",
-    code: "",
-    errorLog: "",
-  });
+  const [userTicket, setUserTicket] = useState(emptyTicket);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      userTicket.name === "" ||
-      userTicket.question === "" ||
-      userTicket.roomNumber === "" ||
-      userTicket.problem === "" ||
-      userTicket.description === "" ||
-      userTicket.code === "" ||
-      userTicket.errorLog === ""
-    ) {
+
+    if (Object.values(userTicket).some((input) => input === "")) {
       return alert("All must be filled out");
     }
 
@@ -57,25 +41,14 @@ const App = () => {
     };
 
     // clears form after submit
-    setUserTicket({
-      name: "",
-      question: "",
-      roomNumber: "",
-      problem: "",
-      description: "",
-      code: "",
-      errorLog: "",
-    });
+    setUserTicket(emptyTicket);
 
     const postData = async () => {
-      await fetch(
-        "https://just-the-ticket-backend-2kjz.onrender.com/api/tickets",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(ticket),
-        }
-      ).then(() => {
+      await fetch("http://localhost:8000/api/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ticket),
+      }).then(() => {
         console.log("✅ New ticket CREATED");
       });
     };
@@ -182,30 +155,35 @@ const App = () => {
                   title={ticket.question_title}
                   handleDelete={deleteTicket}
                 >
-                  <div className="input-container">
-                    <label>Problem Summary:</label>
-                    <div className="ticket-details-container">
-                      <p className="ticket-p">{ticket.problem_summary}</p>
-                    </div>
-                  </div>
-                  <div className="input-container">
-                    <label>Steps Taken:</label>
-                    <div className="ticket-details-container">
-                      <p className="ticket-p">{ticket.tried_input}</p>
-                    </div>
-                  </div>
-                  <div className="monospace-container">
-                    <label>Code:</label>
-                    <div className="code-details-container">
-                      <code className="ticket-p">{ticket.code}</code>
-                    </div>
-                  </div>
-                  <div className="monospace-container">
-                    <label>Error Logs:</label>
-                    <div className="error-details-container">
-                      <code className="ticket-p">{ticket.error_logs}</code>
-                    </div>
-                  </div>
+                  <TicketDetails
+                    containerClassName="input-container"
+                    label="Problem Summary:"
+                    detailsContainerClassName="ticket-details-container"
+                    text={ticket.problem_summary}
+                    pClassName="ticket-p"
+                    tag="p"
+                  />
+                  <TicketDetails
+                    containerClassName="input-container"
+                    label="Steps Taken:"
+                    detailsContainerClassName="ticket-details-container"
+                    text={ticket.problem_summary}
+                    pClassName="ticket-p"
+                  />
+                  <TicketDetails
+                    containerClassName="monospace-container"
+                    label="Code:"
+                    detailsContainerClassName="code-details-container"
+                    text={ticket.code}
+                    pClassName="ticket-code"
+                  />
+                  <TicketDetails
+                    containerClassName="monospace-container"
+                    label="Error Logs:"
+                    detailsContainerClassName="error-details-container"
+                    text={ticket.error_logs}
+                    pClassName="ticket-code"
+                  />
                 </Collapsible>
               );
             })}
